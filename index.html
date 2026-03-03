@@ -3,126 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEMF - Índice</title>
+    <title>Bienvenida</title>
     <style>
         :root {
-            /* Paleta de colores inspirada en Dracula Theme (usado en reveal.js) */
             --bg-color: #282a36;
             --text-color: #f8f8f2;
             --heading-color: #bd93f9;
-            --subheading-color: #ff79c6;
-            --clase-color: #f1fa8c;
-            --link-color: #8be9fd;
-            --link-hover-color: #50fa7b;
-            --bullet-color: #ffb86c;
-            --border-color: #6272a4;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Source Sans Pro', Helvetica, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 2rem;
             display: flex;
             justify-content: center;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-        }
-
-        h2 {
-            color: var(--heading-color);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 3rem;
+            border: 1px solid #6272a4;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            color: var(--heading-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        h3 {
-            color: var(--subheading-color);
-            font-size: 1.8rem;
-            margin-top: 2.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-
-        .clase {
+        p {
             font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--clase-color);
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        ul li {
-            position: relative;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* Viñetas personalizadas para mantener el estilo ide */
-        ul li::before {
-            content: "▹";
-            color: var(--bullet-color);
-            position: absolute;
-            left: -1.2rem;
-        }
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--link-hover-color);
-            text-decoration: underline;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>TEMF</h2>
-        
-        <h3>Unidad 1: GGB</h3>
-        
-        <div class="clase">Clase: Indagación interna</div>
-        <ul>
-            <li><a href="https://geogebra.com/geometry" target="_blank">Geogebra Geometry</a></li>
-            <li><a href="GGB%20Indagaci%C3%B3n%20matem%C3%A1tica%20Interna/class.html">Presentación de la Clase</a></li>
-        </ul>
-
-        <div class="clase">Clase: Indagación externa</div>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-        </ul>
-
-        <h3>Unidad 2: IA</h3>
-        
-        <div class="clase">Clase: Ética y desafíos</div>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-        </ul>
-
-        <div class="clase">Clase: Notebook LM</div>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-        </ul>
-
+        <h1>Bienvenid@s</h1>
+        <p>Este es el repositorio central de material educativo.</p>
     </div>
 </body>
 </html>
