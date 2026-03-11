@@ -93,3 +93,8 @@ ol.box-red, ol.box-blue, ol.box-green, ol.box-yellow {
 .slide-background.bg-content {
     background-image: url('bg-content.png');
 }
+
+/* Aumento de tamaño de texto general para mayor legibilidad */
+.reveal {
+    font-size: 40px;
+}
