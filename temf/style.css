@@ -39,3 +39,62 @@ li {
     width: 150px;
     z-index: 10;
 }
+
+/* Custom Content Boxes */
+.box-red, .box-blue, .box-green, .box-yellow {
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+    box-sizing: border-box;
+}
+
+ul.box-red, ul.box-blue, ul.box-green, ul.box-yellow,
+ol.box-red, ol.box-blue, ol.box-green, ol.box-yellow {
+    padding-left: 3rem;
+}
+
+.box-red {
+    background-color: #ffcdd2; /* Pale red */
+    border: 3px solid #b71c1c; /* Dark red */
+}
+
+.box-blue {
+    background-color: #bbdefb; /* Pale blue */
+    border: 3px solid #0d47a1; /* Dark blue */
+}
+
+.box-green {
+    background-color: #c8e6c9; /* Pale green */
+    border: 3px solid #1b5e20; /* Dark green */
+}
+
+.box-yellow {
+    background-color: #fff9c4; /* Pale yellow */
+    border: 3px solid #f57f17; /* Dark yellow */
+}
+
+/* Background Sections */
+.slide-background.bg-cover, .slide-background.bg-exercise, .slide-background.bg-content {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide-background.bg-cover {
+    background-image: url('bg-cover.png');
+}
+
+.slide-background.bg-exercise {
+    background-image: url('bg-exercise.png');
+}
+
+.slide-background.bg-content {
+    background-image: url('bg-content.png');
+}
+
+/* Aumento de tamaño de texto general para mayor legibilidad */
+.reveal {
+    font-size: 35px;
+}
