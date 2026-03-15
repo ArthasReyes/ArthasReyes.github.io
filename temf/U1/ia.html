@@ -9,6 +9,112 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
     <link rel="stylesheet" href="../style.css">
+    <style>
+    body {
+        font-family: system-ui, -apple-system, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f8f9fa;
+    }
+
+    #diagram-container {
+        position: relative;
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .layer {
+        position: absolute;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 20px;
+        font-weight: bold;
+        color: #333;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .layer.visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Tamaños y colores jerárquicos */
+    .ai { width: 550px; height: 550px; background-color: #e3f2fd; z-index: 1; }
+    .ml { width: 450px; height: 450px; background-color: #bbdefb; z-index: 2; margin-top: 50px; }
+    .dl { width: 350px; height: 350px; background-color: #90caf9; z-index: 3; margin-top: 100px; }
+    .genai { width: 260px; height: 260px; background-color: #64b5f6; z-index: 4; margin-top: 140px; }
+    .llm { width: 180px; height: 180px; background-color: #42a5f5; z-index: 5; margin-top: 180px; color: white; }
+    .model { 
+        width: 100px; height: 100px; 
+        background-color: #1976d2; 
+        z-index: 6; 
+        margin-top: 220px; 
+        color: white;
+        justify-content: center;
+        padding-top: 0;
+        font-size: 0.85em;
+    }
+</style>
+<style>
+    /* Estilos base del botón */
+    .boton-generar {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #1a1a1a;
+        border: 2px solid #333333;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Transición de colores del botón al pasar el cursor */
+    .boton-generar:hover {
+        background-color: #2c2c2c;
+        border-color: #64b5f6; 
+        color: #64b5f6; /* currentColor del SVG adoptará este tono */
+    }
+
+    /* Definición geométrica de la animación */
+    @keyframes destello-estelar {
+        0%, 100% {
+            transform: scale(1) rotate(0deg);
+        }
+        25% {
+            transform: scale(1.15) rotate(-10deg);
+        }
+        50% {
+            transform: scale(0.9) rotate(15deg);
+        }
+        75% {
+            transform: scale(1.1) rotate(-5deg);
+        }
+    }
+
+    /* Disparador de la animación en el SVG */
+    .boton-generar:hover .icono-ia {
+        animation: destello-estelar 1.5s ease-in-out infinite;
+    }
+</style>
 </head>
 <body>
     <div class="reveal">
@@ -16,7 +122,13 @@
         <section class="bg-cover">
             <img class="logo" src="../logo_dep.png" alt="Logo Institución" />
             <h3>Inteligencia Artificial</h3>
-            <img src="logo_ia.jpg" width="400" />
+            <button class="boton-generar" onclick="Reveal.next()">
+                <svg class="icono-ia" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" >
+                    <path d="M19 13.5L17.5 16.9L14.1 18.4L17.5 19.8L19 23.2L20.5 19.8L23.9 18.4L20.5 16.9L19 13.5ZM9.9 1.5L7.2 7.4L1.2 10L7.2 12.6L9.9 18.5L12.5 12.6L18.5 10L12.5 7.4L9.9 1.5ZM19 1.5L17.5 4.9L14.1 6.3L17.5 7.8L19 11.2L20.5 7.8L23.9 6.3L20.5 4.9L19 1.5Z"/>
+                </svg>
+                Generar con IA
+            </button>
+            
         </section>
         <section>
             <h3>Objetivo</h3>
@@ -24,11 +136,24 @@
         </section>
         <section>
             <h3>¿Qué sabemos de la IA?</h3>
-            <img class="fragment" src="ai.webp" width="500" />
+            <div id="diagram-container" class="align-items-center fragment">
+                <div class="layer ai" id="l1">Inteligencia Artificial (IA)</div>
+                <div class="layer ml" id="l2">Machine Learning (ML)</div>
+                <div class="layer dl" id="l3">Deep Learning (DL)</div>
+                <div class="layer genai" id="l4">Generative AI</div>
+                <div class="layer llm" id="l5">LLMs</div>
+                <div class="layer model" id="l6">Gemini<br>ChatGPT</div>
+            </div>
         </section>
         <section>
-            <h3>¿Qué es un prompt?</h3>
-            <img class="fragment" src="prompt.png" width="800" />
+            <section>
+                <h3>¿Qué es un prompt?</h3>
+                <img class="fragment" src="prompt.png" width="800" />
+            </section>
+            <section>
+                <iframe data-src="https://gemini.google.com" width="1000" height="600" frameborder="0"></iframe>
+                <p style="font-size: 0.5em;"><a href="https://gemini.google.com" target="_blank">Abrir Gemini en nueva pestaña</a></p>
+            </section>
         </section>
         <section>
             <h2>Desafío 1</h2>
@@ -37,18 +162,19 @@
         <section>
             <h2>Desafío 2</h2>
             <div class="two-cols">
+                <timer data-seconds="420"></timer>
                 <div class="left-col">
                     <p>De forma individual, añadan los documentos que consideren pertinentes para 
                         investigar los alcances éticos y morales del uso de la IA en los procesos educativos.</p>
                 </div>
                 <div class="right-col">
                     <ul>
-                        <li><a href="../textos/380602spa.pdf" target="_blank">380602spa.pdf</a>
-                        <li><a href="../textos/385877spa.pdf" target="_blank">385877spa.pdf</a>
-                        <li><a href="../textos/393812spa.pdf" target="_blank">393812spa.pdf</a>
-                        <li><a href="../textos/393813spa.pdf" target="_blank">393813spa.pdf</a>
-                        <li><a href="../textos/unesco_ia_edu-inv.pdf" target="_blank">unesco_ia_edu-inv.pdf</a>
-                        <li><a href="../textos/unesco_ia_edu-politicas.pdf" target="_blank">unesco_ia_edu-politicas.pdf</a>
+                        <li><a href="../textos/380602spa.pdf" target="_blank">Currículos de IA ...</a>
+                        <li><a href="../textos/385877spa.pdf" target="_blank">La IA generativa ...</a>
+                        <li><a href="../textos/393812spa.pdf" target="_blank">Marco de [...] Estudiantes</a>
+                        <li><a href="../textos/393813spa.pdf" target="_blank">Marco de [...] Docentes</a>
+                        <li><a href="../textos/unesco_ia_edu-inv.pdf" target="_blank">Innovación e inversión</a>
+                        <li><a href="../textos/unesco_ia_edu-politicas.pdf" target="_blank">Educación y política</a>
                     </ul>
                     <p>Pueden encontrar los textos en U-Cursos.</p>
                 </div>
@@ -58,6 +184,7 @@
             <h2>Desafío 3</h2>
             <p>Con su dupla, generen términos comunes sobre cómo debería ser usada la IA en los procesos educativos.</p>
             <p>Escriban al menos 4 términos comunes.</p>
+            <timer data-seconds="420"></timer>
         </section>
         <section>
             <h2>Desafío 4</h2>
@@ -66,13 +193,15 @@
         </section>
         <section>
             <h3>¿Es la IA una herramienta (ecosistema) para el aprendizaje?</h3>
-            <h3>De ser así, ¿cómo la usamos en el aula?</h3>
-            <h3>De no serlo, ¿cómo la regulamos?</h3>        </section>
+            <p>De ser así, ¿cómo la usamos en el aula?</p>
+            <p>De no serlo, ¿cómo la regulamos?</p>        
+        </section>
         
         
     </div>
     </div>
     <!-- Scripts -->
+    <script src="../timer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
     <script>
@@ -82,6 +211,52 @@
             slideNumber: 'c/t',
             center: true,
             plugins: [ RevealMath.KaTeX ]
+        });
+
+        function animarCapas() {
+            const layers = [
+                document.getElementById('l1'),
+                document.getElementById('l2'),
+                document.getElementById('l3'),
+                document.getElementById('l4'),
+                document.getElementById('l5'),
+                document.getElementById('l6')
+            ];
+
+            layers.forEach((layer, index) => {
+                if (layer.animationTimeout) clearTimeout(layer.animationTimeout);
+                layer.animationTimeout = setTimeout(() => {
+                    layer.classList.add('visible');
+                }, index * 600);
+            });
+        }
+
+        function ocultarCapas() {
+            const layers = [
+                document.getElementById('l1'),
+                document.getElementById('l2'),
+                document.getElementById('l3'),
+                document.getElementById('l4'),
+                document.getElementById('l5'),
+                document.getElementById('l6')
+            ];
+            
+            layers.forEach(layer => {
+                if (layer.animationTimeout) clearTimeout(layer.animationTimeout);
+                layer.classList.remove('visible');
+            });
+        }
+
+        Reveal.on('fragmentshown', event => {
+            if (event.fragment.id === 'diagram-container') {
+                animarCapas();
+            }
+        });
+
+        Reveal.on('fragmenthidden', event => {
+            if (event.fragment.id === 'diagram-container') {
+                ocultarCapas();
+            }
         });
     </script>
 </body>
