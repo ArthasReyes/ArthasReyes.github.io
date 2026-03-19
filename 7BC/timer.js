@@ -35,8 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         timeDisplay.textContent = formatTime(currentSeconds);
         
-        const btnStyle = "background: white; color: #e06666; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 20px; font-weight: bold;";
+        const btnStyle = "background: white; color: #e06666; border: none; padding: 0px 0px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold; width: 24px; height: 20px;";
         
+        // Contenedor para la matriz 2x2
+        const btnsContainer = document.createElement("div");
+        btnsContainer.style.display = "grid";
+        btnsContainer.style.gridTemplateColumns = "1fr 1fr";
+        btnsContainer.style.gap = "5px";
+
         // Botón de Play / Pausa
         const playPauseBtn = document.createElement("button");
         playPauseBtn.innerHTML = "▶"; // Start icon
@@ -47,6 +53,43 @@ document.addEventListener("DOMContentLoaded", () => {
         resetBtn.innerHTML = "↺"; // Reset icon
         resetBtn.style.cssText = btnStyle;
         
+        // Botón Stop (pasa a 2s)
+        const stopBtn = document.createElement("button");
+        stopBtn.innerHTML = "⏹"; // Stop icon
+        stopBtn.style.cssText = btnStyle;
+
+        // Botón +30s
+        const addTimeBtn = document.createElement("button");
+        addTimeBtn.innerHTML = "+30s"; 
+        addTimeBtn.style.cssText = btnStyle;
+        addTimeBtn.style.fontSize = "10px"; // Un poco más pequeño para que quepa bien el texto
+        
+        const playBeep = () => {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            const playSound = (startTime) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, startTime);
+                
+                gain.gain.setValueAtTime(0.5, startTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
+                
+                osc.start(startTime);
+                osc.stop(startTime + 0.3);
+            };
+
+            // Programar 5 beeps espaciados
+            for (let i = 0; i < 5; i++) {
+                playSound(ctx.currentTime + (i * 0.4));
+            }
+        };
+        
         const updateTimer = () => {
             if (currentSeconds > 0) {
                 currentSeconds--;
@@ -55,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 clearInterval(interval);
                 interval = null;
                 playPauseBtn.innerHTML = "▶";
+                playBeep();
             }
         };
         
@@ -80,9 +124,27 @@ document.addEventListener("DOMContentLoaded", () => {
             timeDisplay.textContent = formatTime(currentSeconds);
             playPauseBtn.innerHTML = "▶";
         });
+
+        stopBtn.addEventListener("click", () => {
+            currentSeconds = 2;
+            timeDisplay.textContent = formatTime(currentSeconds);
+            if (!interval) { // Si estaba pausado, lo reanuda para que los 2s sigan corriendo
+                interval = setInterval(updateTimer, 1000);
+                playPauseBtn.innerHTML = "⏸"; // Pause icon
+            }
+        });
+
+        addTimeBtn.addEventListener("click", () => {
+            currentSeconds += 30;
+            timeDisplay.textContent = formatTime(currentSeconds);
+        });
         
+        btnsContainer.appendChild(playPauseBtn);
+        btnsContainer.appendChild(addTimeBtn);
+        btnsContainer.appendChild(stopBtn);
+        btnsContainer.appendChild(resetBtn);
+
         timer.appendChild(timeDisplay);
-        timer.appendChild(playPauseBtn);
-        timer.appendChild(resetBtn);
+        timer.appendChild(btnsContainer);
     });
 });

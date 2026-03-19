@@ -98,3 +98,58 @@ ol.box-red, ol.box-blue, ol.box-green, ol.box-yellow {
 .reveal {
     font-size: 40px;
 }
+
+
+/* Ruta de la clase */
+
+.reveal .ruta-clase {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.reveal .ruta-clase li {
+  list-style: none;
+  flex: 1;
+  min-width: 0;
+  max-width: 20%;
+}
+
+.item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--item-bg, #6c3cff);
+  color: var(--item-color, white);
+  border-radius: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  gap: 4px;
+  padding: 8px;
+}
+
+.item > *:first-child {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+/* Anula márgenes que agrega Reveal.js a <p> */
+.reveal .item p,
+.item p {
+  margin: 0 !important;
+  padding: 0;
+  font-size: 0.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
