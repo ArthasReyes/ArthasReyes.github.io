@@ -1,0 +1,104 @@
+/* Contenedor del árbol */
+.diag-tree-container {
+    display: flex;
+    justify-content: center;
+    font-size: 0.55em;
+    margin-top: 30px;
+}
+
+/* Listas base */
+.diag-tree, .diag-tree ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Nivel raíz (horizontal) */
+.diag-tree {
+    flex-direction: row;
+}
+
+/* Sub-niveles (columna) */
+.diag-tree ul {
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px; /* Espacio para las líneas horizontales */
+}
+
+/* Elementos de la lista */
+.diag-tree li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 10px 0; /* Espaciado vertical entre nodos */
+}
+
+/* Línea vertical para los hijos */
+.diag-tree ul li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -20px; /* Posicionada en el centro del padding de 40px */
+    width: 2px;
+    background: #888;
+}
+
+/* Cortar línea vertical para el primer hijo (mitad superior vacía) */
+.diag-tree ul li:first-child::before {
+    top: 50%;
+}
+
+/* Cortar línea vertical para el último hijo (mitad inferior vacía) */
+.diag-tree ul li:last-child::before {
+    bottom: 50%;
+}
+
+/* Sin línea vertical si es hijo único */
+.diag-tree ul li:only-child::before {
+    display: none;
+}
+
+/* Línea horizontal que entra al hijo */
+.diag-tree ul li::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px; /* Desde la línea vertical */
+    width: 20px; /* Hasta el nodo hijo */
+    height: 2px;
+    background: #888;
+    transform: translateY(-50%);
+}
+
+/* Cajas de los nodos */
+.diag-node {
+    background: #5f6b70;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 170px;
+    position: relative;
+    z-index: 2; /* Sobre las líneas */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.diag-node.blue {
+    background: #5fa3c7;
+}
+
+/* Línea horizontal que sale del nodo padre */
+.diag-node.has-children::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -20px; /* Hasta la línea vertical de los hijos */
+    width: 20px;
+    height: 2px;
+    background: #888;
+    transform: translateY(-50%);
+    z-index: 1; /* Debajo de la caja */
+}
