@@ -1,29 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const revealContainer = document.querySelector(".reveal");
     const timers = document.querySelectorAll("timer");
     
-    timers.forEach(timer => {
+    timers.forEach((timer, index) => {
+        // Encontrar la 'section' a la que pertenece este timer originalmente
+        const parentSection = timer.closest('section');
+        // Asignar un ID único a la sección si no lo tiene, para poder identificarla en los eventos
+        const sectionId = parentSection.id || 'timer-section-' + index;
+        parentSection.id = sectionId;
+
+        // Mover el timer fuera de los slides (al contenedor principal de reveal) para que use el mismo espacio de coordenadas que el logo
+        revealContainer.appendChild(timer);
+
         const initialSeconds = parseInt(timer.getAttribute("data-seconds")) || 60;
         let currentSeconds = initialSeconds;
         let interval = null;
         
-        // Estilos para el contenedor del temporizador
+        // Estilos absolutos relativos a la ventana (igual que el logo)
         timer.style.position = "absolute";
-        timer.style.top = "0px";
-        timer.style.right = "0px";
-        timer.style.backgroundColor = "#e06666"; // Rojo pálido como el de los ejercicios
+        timer.style.top = "2%"; // Iguala la altura del logo
+        timer.style.right = "calc(2% + 90px)"; // Se sitúa justo a la izquierda del logo
+        timer.style.backgroundColor = "#e06666"; 
         timer.style.color = "white";
-        timer.style.padding = "10px 20px";
-        timer.style.borderRadius = "10px";
-        timer.style.fontSize = "30px";
+        timer.style.padding = "5px 15px";
+        timer.style.borderRadius = "8px";
+        timer.style.fontSize = "24px";
         timer.style.fontFamily = "monospace";
-        timer.style.display = "flex";
+        timer.style.display = "none"; // Oculto por defecto
         timer.style.alignItems = "center";
-        timer.style.gap = "15px";
-        timer.style.zIndex = "100";
+        timer.style.gap = "10px";
+        timer.style.zIndex = "9999"; // Igual que el logo
         timer.style.boxShadow = "0 4px 6px rgba(0,0,0,0.2)";
 
         const timeDisplay = document.createElement("span");
-        timeDisplay.style.minWidth = "90px";
+        timeDisplay.style.minWidth = "70px";
         timeDisplay.style.textAlign = "center";
         timeDisplay.style.fontWeight = "bold";
         
@@ -35,56 +45,44 @@ document.addEventListener("DOMContentLoaded", () => {
         
         timeDisplay.textContent = formatTime(currentSeconds);
         
-        const btnStyle = "background: white; color: #e06666; border: none; padding: 0px 0px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold; width: 24px; height: 20px;";
+        const btnStyle = "background: white; color: #e06666; border: none; padding: 2px; border-radius: 3px; cursor: pointer; font-size: 10px; font-weight: bold; width: 20px; height: 18px;";
         
-        // Contenedor para la matriz 2x2
         const btnsContainer = document.createElement("div");
         btnsContainer.style.display = "grid";
         btnsContainer.style.gridTemplateColumns = "1fr 1fr";
-        btnsContainer.style.gap = "5px";
+        btnsContainer.style.gap = "4px";
 
-        // Botón de Play / Pausa
         const playPauseBtn = document.createElement("button");
-        playPauseBtn.innerHTML = "▶"; // Start icon
+        playPauseBtn.innerHTML = "▶"; 
         playPauseBtn.style.cssText = btnStyle;
         
-        // Botón de Reinicio
         const resetBtn = document.createElement("button");
-        resetBtn.innerHTML = "↺"; // Reset icon
+        resetBtn.innerHTML = "↺"; 
         resetBtn.style.cssText = btnStyle;
         
-        // Botón Stop (pasa a 2s)
         const stopBtn = document.createElement("button");
-        stopBtn.innerHTML = "⏹"; // Stop icon
+        stopBtn.innerHTML = "⏹"; 
         stopBtn.style.cssText = btnStyle;
 
-        // Botón +30s
         const addTimeBtn = document.createElement("button");
-        addTimeBtn.innerHTML = "+30s"; 
+        addTimeBtn.innerHTML = "+30"; 
         addTimeBtn.style.cssText = btnStyle;
-        addTimeBtn.style.fontSize = "10px"; // Un poco más pequeño para que quepa bien el texto
+        addTimeBtn.style.fontSize = "9px";
         
         const playBeep = () => {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            
             const playSound = (startTime) => {
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
-                
                 osc.connect(gain);
                 gain.connect(ctx.destination);
-                
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(880, startTime);
-                
                 gain.gain.setValueAtTime(0.5, startTime);
                 gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
-                
                 osc.start(startTime);
                 osc.stop(startTime + 0.3);
             };
-
-            // Programar 5 beeps espaciados
             for (let i = 0; i < 5; i++) {
                 playSound(ctx.currentTime + (i * 0.4));
             }
@@ -104,20 +102,17 @@ document.addEventListener("DOMContentLoaded", () => {
         
         playPauseBtn.addEventListener("click", () => {
             if (interval) {
-                // Pausar
                 clearInterval(interval);
                 interval = null;
                 playPauseBtn.innerHTML = "▶";
             } else {
-                // Iniciar/Reanudar
                 if (currentSeconds === 0) currentSeconds = initialSeconds;
                 interval = setInterval(updateTimer, 1000);
-                playPauseBtn.innerHTML = "⏸"; // Pause icon
+                playPauseBtn.innerHTML = "⏸"; 
             }
         });
         
         resetBtn.addEventListener("click", () => {
-            // Reiniciar
             clearInterval(interval);
             interval = null;
             currentSeconds = initialSeconds;
@@ -128,9 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
         stopBtn.addEventListener("click", () => {
             currentSeconds = 2;
             timeDisplay.textContent = formatTime(currentSeconds);
-            if (!interval) { // Si estaba pausado, lo reanuda para que los 2s sigan corriendo
+            if (!interval) { 
                 interval = setInterval(updateTimer, 1000);
-                playPauseBtn.innerHTML = "⏸"; // Pause icon
+                playPauseBtn.innerHTML = "⏸"; 
             }
         });
 
@@ -146,5 +141,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         timer.appendChild(timeDisplay);
         timer.appendChild(btnsContainer);
+
+        // Lógica para mostrar/ocultar el timer según la diapositiva activa
+        if (typeof Reveal !== 'undefined') {
+            Reveal.on('slidechanged', event => {
+                if (event.currentSlide.id === sectionId) {
+                    timer.style.display = "flex";
+                } else {
+                    timer.style.display = "none";
+                }
+            });
+            // Comprobación inicial al cargar si estamos en esa misma diapositiva
+            if (Reveal.getCurrentSlide() && Reveal.getCurrentSlide().id === sectionId) {
+                timer.style.display = "flex";
+            }
+        }
     });
 });
+

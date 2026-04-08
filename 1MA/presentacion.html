@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>U1</title>
+    
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagrama.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <img class="logo" src="assets/logo.png" alt="Logo Institución" />  
+    <div class="slides">
+<!-------------------------------
+---------------------------------     
+Clase 1        
+---------------------------------
+-------------------------------->
+        <section>
+            <h3>Movimiento Circular</h3>
+            <img class="r-stretch" src="assets/planetas_cute.png"/>
+        </section>
+        <section>
+            <h2>Objetivo</h2>
+            <p>Analizar el movimiento circular uniforme y sus características.</p>
+        </section>
+        <section>
+            <h3>¿Qué es el MCU?</h3>
+            <div class="diag-tree-container">
+              <ul class="diag-tree">
+                <li>
+                  <div class="diag-node has-children">Cinemática</div>
+                  <ul>
+
+                    <!-- Rama de Rectilíneos -->
+                    <li>
+                      <div class="diag-node has-children">Movimientos rectilíneos</div>
+                      <ul>
+                        <li><div class="diag-node">M. Rectilíneo Uniforme</div></li>
+                        <li><div class="diag-node">M. Rectilíneo Uniformemente Acelerado</div></li>
+                      </ul>
+                    </li>
+
+                    <!-- Rama de Circulares -->
+                    <li>
+                      <div class="diag-node has-children blue">Movimientos circulares</div>
+                      <ul>
+                        <li><div class="diag-node blue">M. Circular Uniforme</div></li>
+                        <li><div class="diag-node blue">M. Circular Acelerado</div></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </section>
+
+
+        <section>
+            <iframe src="https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_all.html?locale=es" class="r-stretch"></iframe>
+        </section>
+        <section>
+            <img src="assets/719270notvortexgif.gif" class="r-stretch">
+        </section>
+        <section>
+            <img src="assets/534847705_791638303389763_948643435309249967_n.jpg" class="r-stretch">
+        </section>
+        <section>
+            <div class="two-cols">
+                
+                <div class="left-col">
+                    <img src="assets/circularuniforme.jpg">
+                </div>
+                <div class="right-col">
+                    <img src="assets/carrucel.jpeg">
+                </div>
+            </div>
+            
+        </section>
+        <section class="scrollable">
+            <h3>Definiciones angulares</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 16.66%;">Nombre</th> <!-- 2/12 -->
+                        <th style="width: 50%;">Descripción</th> <!-- 6/12 -->
+                        <th style="width: 33.33%;">Ecuación</th> <!-- 4/12 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Periodo</td>
+                        <td>Tiempo en realizar una vuelta. <br> Su unidad de medida es segundos [s].</td>
+                        <td>$T = \frac{1}{f}$</td>
+                    </tr>
+                    <tr>
+                        <td>Frecuencia</td>
+                        <td>Número de vueltas en un segundo.<br> Su unidad de medida es segundos a la menos uno [s⁻¹] o Hertz [Hz].</td>
+                        <td>$f = \frac{\text{n° de vueltas}}{\text{tiempo}}$</td>
+                    </tr>
+                    <tr>
+                        <td>Posición angular</td>
+                        <td>Ángulo en el que se apunta el vector de posición. <br> Su unidad de medida es radianes [rad].</td>
+                        <td>$\theta$</td>
+                    </tr>
+                    <tr>
+                        <td>Velocidad angular</td>
+                        <td>Es la variación del ángulo del centro barrido durante un intervalo de tiempo.<br> 
+                            Su dirección es perpendicular al plano que contiene la circunferencia y su sentido se rige por la regla de la mano derecha. <br> 
+                            Su unidad de medida es radianes por segundo [rad/s].
+                        </td>
+                        <td>$$\omega = \frac{\Delta \theta}{\Delta t}$$
+                            <div class="fragment">
+                                $$\omega = \frac{2\pi}{T}$$
+                                $$\omega = 2\pi f$$
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <img src="assets/mcu_vars.png" class="r-stretch">
+        </section>
+        <section>
+            <h1>Algunos problemas para calentar</h1>
+        </section>
+        <section class="problema">
+            <p>Un carrusel en rotación da una revolución en 4 s. Si un niño está en la parte más alta del carrusel y se encuentra a 1.2 m del centro. </p>
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+            </ul>
+        </section>
+        <section class="problema">
+            <p>La Tierra realiza una rotación completa sobre su eje aproximadamente cada 24 horas. Considera un punto en la superficie terrestre (por ejemplo, un estudiante en el ecuador).</p>
+
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular después de 3 horas?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+            </ul>
+        </section>
+        <section class="problema">
+            <timer data-seconds="240"></timer>
+            <p>La Tierra realiza una rotación alrededor del sol en 365 días.</p>
+
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular después de 1 día?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+            </ul>
+        </section>
+        <section class="scrollable">
+            <h3>Definiciones lineales</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 16.66%;">Nombre</th> <!-- 2/12 -->
+                        <th style="width: 50%;">Descripción</th> <!-- 6/12 -->
+                        <th style="width: 33.33%;">Ecuación</th> <!-- 4/12 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Posición</td>
+                        <td>Ubicación del objeto en el espacio.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Velocidad tangencial o lineal</td>
+                        <td>Es la velocidad que tiene el objeto en un instante de tiempo.<br>
+                        Su unidad de medida es metros por segundo [m/s].
+                        <div class="box-green">En MRU era:  $v=\frac{x}{t}$</div>
+                            
+                        </td>
+                        <td>$$v=\omega r$$
+                            <div class="fragment"> $$v=2\pi f\cdot r$$
+                            $$v=\frac{2\pi r}{T}$$</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aceleración centrípeta</td>
+                        <td>Es la aceleración que tiene el objeto en un instante de tiempo.</td>
+                        <td>$$a_c = \frac{v^2}{r}$$ $$a_c = \omega^2r$$</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h1>Otros problemas para calentar</h1>
+        </section>
+
+        <section class="problema">
+            <p>Un carrusel en rotación da una revolución en 4 s. Si un niño está en la parte más alta del carrusel y se encuentra a 1.2 m del centro. </p>
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+                <li><b>¿Cuál es su velocidad tangencial?</b></li>
+                <li><b>¿Cuál es su aceleración centrípeta?</b></li>
+            </ul>
+        </section>
+        <section class="problema">
+            <timer data-seconds="240"></timer>
+            <p>La Tierra realiza una rotación completa sobre su eje aproximadamente cada 24 horas. Considera un punto en la superficie terrestre (por ejemplo, un estudiante en el ecuador).</p>
+
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular después de 3 horas?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+                <li><b>¿Cuál es su velocidad tangencial?</b></li>
+                <li><b>¿Cuál es su aceleración centrípeta?</b></li>
+            </ul>
+        </section>
+        <section class="problema">
+            <timer data-seconds="240"></timer>
+            <p>La Tierra realiza una rotación alrededor del sol en 365 días.</p>
+
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular después de 3 horas?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+                <li><b>¿Cuál es su velocidad tangencial?</b></li>
+                <li><b>¿Cuál es su aceleración centrípeta?</b></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Conclusiones</h2>
+            <ul>
+                <li>¿En qué casos utilizamos el modelo de MCU?</li>
+                <li class="fragment">¿En qué se diferencia la aceleración de gravedad en la tierra respecto a la aceleración centrípeta?</li>
+                <li class="fragment">¿Por qué no la consideramos en los laboratorios de la Unidad 0?</li>
+                <li class="fragment">¿Cuál podría ser un ejemplo de MCU en la vida cotidiana?</li>
+                <li class="fragment">¿Qué movimiento podría ser interesante analizar a través del MCU?</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Fin de la clase</h3>
+            <img class="r-stretch" src="assets/planetas_cute.png"/>
+        </section>
+<!-------------------------------
+---------------------------------     
+Clase 2        
+---------------------------------
+-------------------------------->
+        <section>
+            <h3>Movimiento Circular</h3>
+            <img class="r-stretch" src="assets/rpi.webp"/>
+        </section>
+        <section>
+            <h2>Objetivo</h2>
+            <p>Comprender el código básico de una raspberry pi pico en python para controlar la velocidad angular de un motor</p>
+        </section>
+        <section>
+            <h3>¿Qué es una Raspberry Pi Pico?</h3>
+            <div class="two-cols">
+                <div class="left-col">
+                    <img src="assets/rpi.webp" alt="Raspberry Pi Pico"/>
+                </div>
+                <div class="right-col">
+                    <img src="assets/Controlador_Pwm_Velocidad_Motor_DC_90W.webp">
+                </div>
+            </div>
+        </section>
+        <section>
+          <pre><code class="language-python">
+            from machine import Pin, PWM
+            from time import sleep
+
+            motor = PWM(Pin(15))
+            motor.freq(1000)          # frecuencia en Hz
+            motor.duty_u16(32768)     # valor entre 1 y 65535
+            sleep(3)
+            motor.duty_u16(0)
+          </code></pre>
+        </section>
+        <section>
+            <h2>Conclusiones</h2>
+            <ul>
+                <li>¿En qué nos ayuda involucrar un microcontrolador para analizar un MCU?</li>
+                <li class="fragment">¿Por qué duty_u16 es con valores de 0 a 65535 y no en rad/s?</li>
+                <li class="fragment">¿Qué tipo de situaciones concretas podemos generar con esta herramienta?</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Fin de la clase</h3>
+            <img class="r-stretch" src="assets/rpi.webp"/>
+        </section>
+<!-------------------------------
+---------------------------------     
+Clase 3        
+---------------------------------
+-------------------------------->
+        
+        <section>
+            <h3>Movimiento Circular</h3>
+            <img class="r-stretch" src="assets/Sillas-Voladoras-Atraccion-Parque-de-Atracciones-de-Madrid-2.jpg"/>
+        </section>
+        <section>
+            <h2>Objetivo</h2>
+            <p>Programar un motor dc para que gire a una velocidad angular determinada</p>
+        </section>
+        <section>
+            <h1>Recordando la clase anterior</h1>
+        </section>
+        <section class="problema">
+            <timer data-seconds="240"></timer>
+            
+            <p>Considera las manecilla del minutero de un reloj analógico, cuyo largo es de 15 cm</p>
+
+            <ul>
+                <li>Dibuja la situación</li>
+                <li>¿Cuál es su periodo?</li>
+                <li>¿Cuál es su frecuencia?</li>
+                <li>¿Cuál es su posición angular después de 20 minutos?</li>
+                <li>¿Cuál es su velocidad angular?</li>
+                <li>¿Cuál es su velocidad tangencial en la punta?</li>
+                <li>¿Cuál es su aceleración centrípeta en la punta?</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Materiales</h3>
+            <ul>
+                <li>Raspberry Pi Pico</li>
+                <li>Motor DC</li>
+                <li>Regulador de velocidad</li>
+                <li>Protoboard</li>
+                <li>Cables</li>
+                <li>Fuente de alimentación</li>
+            </ul>
+        </section>
+
+        <section>
+            Determina los valores de velocidad para distintos duty en el regulador de velocidad
+            <ul>
+                <li>100% de la velocidad</li>
+                <li>80% de velocidad</li>
+                <li>60% de velocidad</li>
+                <li>40% de velocidad</li>
+                <li>20% de velocidad</li>
+                <li>0% de velocidad</li>    
+            </ul>
+        </section>
+        <section>
+            <video src="assets/video.mp4" class="r-stretch" autoplay muted loop></video>
+        </section>
+        <section>
+            <h2> Preparación del siguiente laboratorio </h2>
+            <p>¿Cómo afecta la velocidad angular al ángulo de elevación de una cuerda con una masa en su extremo?</p>
+        </section>
+        <section>
+            <h3>Fin de la clase</h3>
+            <img class="r-stretch" src="assets/Sillas-Voladoras-Atraccion-Parque-de-Atracciones-de-Madrid-2.jpg"/>
+        </section>
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.js"></script>
+    <script src="timer.js"></script>
+    <script>
+    Reveal.initialize({
+        hash: true,
+        transition: 'fade',
+        slideNumber: 'c/t',
+        center: true,
+        margin: 0.02,
+        width: 1280,
+        height: 720,
+        minScale: 0.1,
+        maxScale: 3.0,
+        plugins: [ RevealMath.KaTeX, RevealHighlight ]
+    });
+
+    // Restart videos when slide becomes active
+    Reveal.on('slidechanged', function(event) {
+        // pause videos in previous slide
+        var prevVids = event.previousSlide ? event.previousSlide.querySelectorAll('video') : [];
+        prevVids.forEach(v => v.pause());
+
+        // reset and play videos in current slide
+        var currVids = event.currentSlide ? event.currentSlide.querySelectorAll('video') : [];
+        currVids.forEach(v => {
+            v.currentTime = 0;
+            v.play();
+        });
+    });
+</script>
+</body>
+</html>
