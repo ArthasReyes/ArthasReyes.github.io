@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>U2</title>
+    
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="diagrama.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <img class="logo" src="../logo_dep.png" alt="Logo Institución" />  
+    <div class="slides">
+    <section>
+        <h2>Unidad 2</h2>
+        <h3>Simuladores</h3>
+        <img src="phet_logo.png" class="r-stretch">
+        <p>Repositorio educativo: Phet</p>
+    </section>
+    <section>
+        <h2>Objetivo</h2>
+        <p class="text-big">Conocer la plataforma Phet Colorado por medio de la búsqueda y contextualización de simuladores para la presentación de estos al grupo curso.</p>
+    </section>
+    <section>
+        <p class="r-fit-text">¿Qué características tienen los simuladores?</p>
+        <p class="r-fit-text fragment">¿Qué ventajas y desventajas tienen los simuladores?</p>
+    </section>
+    <section>
+        👤
+        <p class="text-big">Desafío 1. Crea una cuenta en <span style="color: rgb(90, 242, 253);">Phet-Colorado</span></p>
+        <p>https://phet.colorado.edu/es/</p>
+    </section>
+    <section>
+        👥
+        <p class="text-big">Desafío 2. Encuentra en phet colorado un simulador asociado a algún OA de matemática o ciencias-Física</p>
+        <p>No pueden haber dos OAs iguales, usaremos la nomenclatura FIS-2M-OA3 o MAT-7B-OA14 para no repetirnos en la pizarra</p>
+    </section>
+    <section>
+        <timer data-seconds="20*60"></timer>
+        👥
+        <p class="text-big">Desafío 3. Completen una slides del gslides "Repositorio Educativo Phet" en ucursos.</p>
+        <div class="two-cols">
+            <div class="left-col">
+                <h4>En el título</h4>
+                <ul>
+                    <li>Nombre del simulador con su respectivo hipervínculo</li>
+                    <li>Código (Asignatura, curso y OA)</li>
+                </ul>
+
+                <h4>En las notas del orador:</h4>
+                <ul>
+                    <li>Limitaciones encontradas</li>
+                    <li>Nombres del equipo</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <h4>En el cuerpo</h4>
+                <ul>
+                    <li>¿Con qué estratégias o instancias de la clase lo usaría? (modelamiento, práctica guiada, práctica autónoma, evaluación, otra?</li>
+                    <li>¿Cómo el uso del simulador mejora la experiencia de aprendizaje en comparación a no usarlo?</li>
+                </ul>
+            </div>
+        </div>
+        
+    </section>
+    <section>
+        <p class="text-big">Presentaciones Blitz: Uno del equipo presentará en 2min el simulador escogido</p>
+        <a href="https://docs.google.com/presentation/d/1ptgSkNtRfXRndsTTbpXT_DntjSeCqAdNemL_Xd9KGuw">Repositorio educativo: Phet</a>
+    </section>
+
+        
+
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.js"></script>
+    <script src="../timer.js"></script>
+    <script>
+    Reveal.initialize({
+        hash: true,
+        transition: 'fade',
+        slideNumber: 'c/t',
+        center: true,
+        margin: 0.02,
+        width: 1280,
+        height: 720,
+        minScale: 0.1,
+        maxScale: 3.0,
+        plugins: [ RevealMath.KaTeX, RevealHighlight ]
+    });
+
+    // Restart videos when slide becomes active
+    Reveal.on('slidechanged', function(event) {
+        // pause videos in previous slide
+        var prevVids = event.previousSlide ? event.previousSlide.querySelectorAll('video') : [];
+        prevVids.forEach(v => v.pause());
+
+        // reset and play videos in current slide
+        var currVids = event.currentSlide ? event.currentSlide.querySelectorAll('video') : [];
+        currVids.forEach(v => {
+            v.currentTime = 0;
+            v.play();
+        });
+    });
+</script>
+</body>
+</html>

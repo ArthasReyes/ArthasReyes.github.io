@@ -1,0 +1,84 @@
+127.0.0.1 - - [10/Apr/2026 00:06:11] "GET /poe.html HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:06:11] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:06:11] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:06:11] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:06:11] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:06:11] "GET /phet_logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:06:11] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:06:11] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:06:11] "GET /pendulo.js HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:06:12] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:06:12] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:06:12] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:06:12] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:07:44] "GET /poe.html HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:07:44] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:07:44] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:07:44] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:07:44] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:07:44] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:07:44] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:07:44] "GET /simuladores.png HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:07:44] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:07:44] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:42] "GET /poe.html HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:08:42] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:42] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:42] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:42] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:42] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:42] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:42] "GET /simuladores.png HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:08:42] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:42] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:52] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:52] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:52] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:52] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:52] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:52] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:08:52] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:08:52] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /poe.html HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /simuladores.png HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:09:41] "GET /pendulo.js HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:10:28] "GET /phet.html HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:10:28] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:10:28] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:10:28] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:10:28] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:10:28] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:10:28] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:10:28] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:10:28] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:13:41] "GET /poe.html HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /poe.html HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:13:53] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /simuladores.png HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /timer.js HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:13:53] "GET /pendulo.js HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /poe.html HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /diagrama.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /logo_dep.png HTTP/1.1" 404 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /simuladores.png HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /pendulo.js HTTP/1.1" 304 -
+127.0.0.1 - - [10/Apr/2026 00:15:23] code 404, message File not found
+127.0.0.1 - - [10/Apr/2026 00:15:23] "GET /timer.js HTTP/1.1" 404 -
