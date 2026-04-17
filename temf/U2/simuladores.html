@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>U2</title>
+    
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="diagrama.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <img class="logo" src="../logo_dep.png" alt="Logo Institución" />  
+    <div class="slides">
+    <section>
+        <h2>Unidad 2</h2>
+        <h3>Simuladores - POE</h3>
+        <img src="assets/simuladores.png" class="r-stretch">
+        <p>Otros simuladores</p>
+    </section>
+    <section>
+        <h2>Objetivo</h2>
+        <p class="text-big">Conocer otras plataformas además de Phet Colorado por medio de la búsqueda y contextualización de actividades POE para la presentación de estos al grupo curso.</p>
+    </section>
+
+
+    <section>
+        <ul>
+            <li>¿Qué es POE?</li> 
+            <li class="fragment">¿Qué características tiene?</li>
+            <li class="fragment">¿Qué momentos propone el POE?</li>
+            <li class="fragment">¿Qué busca la estrategia POE en el proceso de enseñanza-aprendizaje del aprendiz?</li>
+            <li class="fragment">¿Cómo se relaciona el POE con el constructivismo?</li>
+            <li class="fragment">¿y con el cambio conceptual?</li>
+        </ul>
+    </section>
+    <section>
+        <img class="r-stretch" src="assets/ejemplo_poe.png">
+    </section>
+    <section>
+        <timer data-seconds="15*60"></timer>
+        👥
+        <p class="text-big">Desafío 1. Completen una slides del gslides "Repositorio Educativo POE" en ucursos.</p>
+        <div class="two-cols">
+            <div class="left-col">
+                <h4>En el título</h4>
+                <ul>
+                    <li>Nombre del simulador con su respectivo hipervínculo</li>
+                    <li>Código (Asignatura, curso y OA)</li>
+                </ul>
+
+                <h4>En las notas del orador:</h4>
+                <ul>
+                    <li>Limitaciones encontradas</li>
+                    <li>Nombres del equipo</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <h4>En el cuerpo</h4>
+                Preguntas a realizar en cada una de las fases
+                <ul>
+                    <li>Preguntas de la predicción</li>
+                    <li>Preguntas de la observación</li>
+                    <li>Preguntas de la explicación</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <p class="text-big">Presentaciones Blitz: El que no presentó en el bloque anterior presentará en 2min el POE escogido explicando como sus preguntas generan el cambio conceptual</p>
+        <a href="https://docs.google.com/presentation/d/12SoroaPmOYg89s4tUy3FaFoiJDInwPV3uumXLFiCUxA/edit?slide=id.g3d53a284a76_0_127#slide=id.g3d53a284a76_0_127">Repositorio educativo: POE</a>
+    </section>
+        
+    </section>
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.js"></script>
+    <script src="../../timer.js"></script>
+    <script>
+    Reveal.initialize({
+        hash: true,
+        transition: 'fade',
+        slideNumber: 'c/t',
+        center: true,
+        margin: 0.02,
+        width: 1280,
+        height: 720,
+        minScale: 0.1,
+        maxScale: 3.0,
+        plugins: [ RevealMath.KaTeX, RevealHighlight ]
+    });
+
+    // Restart videos when slide becomes active
+    Reveal.on('slidechanged', function(event) {
+        // pause videos in previous slide
+        var prevVids = event.previousSlide ? event.previousSlide.querySelectorAll('video') : [];
+        prevVids.forEach(v => v.pause());
+
+        // reset and play videos in current slide
+        var currVids = event.currentSlide ? event.currentSlide.querySelectorAll('video') : [];
+        currVids.forEach(v => {
+            v.currentTime = 0;
+            v.play();
+        });
+    });
+</script>
+</body>
+</html>
