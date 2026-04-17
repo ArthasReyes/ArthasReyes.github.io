@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>U2</title>
+    
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="diagrama.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <img class="logo" src="../logo_dep.png" alt="Logo Institución" />  
+    <div class="slides">
+    <section>
+        <h2>Unidad 2</h2>
+        <h3>Simuladores - POE</h3>
+        <img src="assets/simuladores.png" class="r-stretch">
+        <p>POE</p>
+    </section>
+    <section>
+        <h2>Objetivo</h2>
+        <p class="text-big">Planificar una clase que aborde un error conceptual específico a través de la estrategia POE y simuladores digitales, para favorecer el cambio conceptual en los estudiantes.</p>
+    </section>
+
+
+    <section>
+        👤 👤 👤 👤
+        <p class="text-big">Desafío 1: Unase con otra pareja para generar un grupo de 4 personas. Si ya era de 3, manténganse en 3.</p>
+    </section>
+    <section>
+        👤 👤 👤 👤
+        <p class="text-big">Desafío 2: Seleccionen un OA para realizar una clase y un misconception asociado a ella, regístren el código en la pizarra numerada, los códigos no se pueden repetir</p>
+        <p>Favor tener preferencia con aquellos y aquellas que ya saben que implementarán.</p>
+    </section>
+    <section>
+        <section>
+            👤 👤 👤 👤
+            <p class="text-big">Desafío 3: Ingresen a la lista de cotejo de la U2, como equipo edite el indicador para que sea pedagógicamente correcto.</p>
+        </section>
+        <section>
+            <iframe src="https://docs.google.com/document/d/100Ef58DeTLiIVh1irRdasKAfcnofFOQwU7wxucEmDes/edit?tab=t.0" class="r-stretch" allowfullscreen></iframe>
+        </section>
+    
+    </section>
+    <section>
+        👤 👤 👤 👤
+        <p class="text-big">Desafío 4: Planifiquen la actividad a presentar la próxima clase.</p>
+    </section>
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.js"></script>
+    <script src="../../timer.js"></script>
+    <script>
+    Reveal.initialize({
+        hash: true,
+        transition: 'fade',
+        slideNumber: 'c/t',
+        center: true,
+        margin: 0.02,
+        width: 1280,
+        height: 720,
+        minScale: 0.1,
+        maxScale: 3.0,
+        plugins: [ RevealMath.KaTeX, RevealHighlight ]
+    });
+
+    // Restart videos when slide becomes active
+    Reveal.on('slidechanged', function(event) {
+        // pause videos in previous slide
+        var prevVids = event.previousSlide ? event.previousSlide.querySelectorAll('video') : [];
+        prevVids.forEach(v => v.pause());
+
+        // reset and play videos in current slide
+        var currVids = event.currentSlide ? event.currentSlide.querySelectorAll('video') : [];
+        currVids.forEach(v => {
+            v.currentTime = 0;
+            v.play();
+        });
+    });
+</script>
+</body>
+</html>
