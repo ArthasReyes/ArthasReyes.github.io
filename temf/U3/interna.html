@@ -16,24 +16,28 @@
     </script>
 </head>
 <body>
+    
+
     <div class="reveal">
+        <div id="iframe-container">
+        <iframe src="https://www.geogebra.org/classic"></iframe>
+        </div>
+        
         <img class="logo" src="../logo_dep.png" alt="Logo Institución" />
     <div class="slides">
         <section>
-            
             <h2>Unidad 2</h2>
             <h3>Geogebra</h3>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Geogebra.svg/1280px-Geogebra.svg.png" class="r-stretch" />
+            <img src="assets/ggb_logo.png" class="r-stretch" />
             <p>Indagación matemática Interna</p>
         </section>
 
         <section>
-            <h3>Objetivo</h3>
+            <h2>Objetivo</h2>
             <p class="text-big">Usar la herramienta de Geogebra geometry, por medio de una secuencia de desafíos para responder preguntas indagatorias.</p>
         </section>
-
         <section>
-            <h3>Teorema de pitágoras</h3>
+            <h2>Teorema de pitágoras</h2>
 
             <div class="two-cols">
             <div class="left-col">
@@ -41,13 +45,17 @@
             </div>
                 
             <div class="right-col">
-                <img src="assets/teo_pitagoras.png" class="r-stretch"/>
+                <!-- <img src="assets/teo_pitagoras.png" class="r-stretch"/>  -->
+                <script src="../../pitagoras.js"></script>
+                <pythagoras-sim class="r-stretch"></pythagoras-sim>
+
+                
             </div>
             </div>
         </section>
 
         <section>
-            <h3>Posibles preguntas a indagar</h3>
+            <h3>Posibles preguntas a indagar</h3>  
             <p>Será que:</p>
             <ul>
                 <li class="fragment semi-fade-out" data-fragment-index="1">Si cambiamos el triángulo rectángulo por uno cualquiera ¿habrá una relación entre las áreas de los cuadrados?</li>
@@ -59,62 +67,97 @@
         </section>
 
         <section>
-            <h3>Exploración</h3>
-            <p class="text-big">El plan ...</p>
+            <section>
+                <h2>Exploración</h2>
+                <p class="text-big">El plan ...</p>
+            </section>
+            <section>
+                <h2>Ideas de la clase</h2>
+                <div class="r-stretch" contenteditable="true"></div>
+            </section>
         </section>
-
         <section>
-            <div class="two-cols">
-            <div class="left-col">
-                <p class="text-big">Desafío 1: Cree un proyecto en Geogebra Classic y limpie el lienzo para trabajar en geometría clásica.</p>
-            </div>
-                
-            <div class="right-col">
-                <img src="assets/geometry.png" class="r-stretch" />
-            </div>
-            </div>
+            <section>
+                <p class="text-big">Desafío 0: Cree una cuenta en geogebra.org</p>
+                <p>https://www.geogebra.org/auth/classic</p>
+            </section>
+            <section>
+                <div class="two-cols">
+                    <div class="left-col">
+                        <p class="text-big">Desafío 1: Cree un proyecto en Geogebra Classic y limpie el lienzo para trabajar en geometría clásica.</p>
+                    </div>
+                    <div class="right-col">
+                        <img src="assets/geometry.png" class="r-stretch" />
+                    </div>
+                </div>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
         
         <section>
-            <p class="text-big">Desafío 2: Construya un triángulo rectángulo utilizando los íconos de la parte superior de la aplicación.</p>
-            <img src="assets/menu.png" class="r-stretch" />
+            <section>
+                <p class="text-big">Desafío 2: Construya un triángulo rectángulo utilizando los íconos de la parte superior de la aplicación.</p>
+                <img src="assets/menu.png" class="r-stretch" />
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 3: Oculte los elementos que no utilizará.</p>
-            <p>Considere este paso como una parte de todos los siguientes desafíos.</p>
+            <section>
+                <p class="text-big">Desafío 3: Oculte los elementos que no utilizará.</p>
+                <p>Considere este paso como una parte de todos los siguientes desafíos.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 4: Cree un deslizador para la cantidad de lados a usar en los polígonos.</p>
+            <section>
+                <p class="text-big">Desafío 4: Cree un deslizador para la cantidad de lados a usar en los polígonos.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 5: Cree polígonos regulares cuya base son los lados del triángulo.</p>
+            <section>
+                <p class="text-big">Desafío 5: Cree polígonos regulares cuya base son los lados del triángulo.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 6: Mida el área de los polígonos regulares.</p>
+            <section>
+                <p class="text-big">Desafío 6: Mida el área de los polígonos regulares.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 7: Cree 3 textos, uno para expresar cada una de las áreas de los polígonos.</p>
+            <section>
+                <p class="text-big">Desafío 7: Cree 3 textos, uno para expresar cada una de las áreas de los polígonos.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 8: Cree una fórmula LaTex para evidenciar las sumas de las áreas asociadas al teorema de pitágoras.</p>
+            <section>
+                <p class="text-big">Desafío 8: Cree una fórmula LaTex para evidenciar las sumas de las áreas asociadas al teorema de pitágoras.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
-            <p class="text-big">Desafío 9: Personalice la apariencia de los elementos de la vista gráfica. Realiza al menos 5 personalizaciones.</p>
+            <section>
+                <p class="text-big">Desafío 9: Personalice la apariencia de los elementos de la vista gráfica. Realiza al menos 5 personalizaciones.</p>
+            </section>
+            <section class="usar-iframe"></section>
         </section>
 
         <section>
             <p class="text-big">Desafío 10: Formulación de conjeturas</p>
             <ol>
                 <li>Explore: ¿Se verifica o se refuta nuestra pregunta indagatoria?</li>
-                <li>Si se verifica, indique los casos indagados y exprese la propiedad explorada  como una conjetura a demostrar.</li>
-                <li>Si no se verifica, indique su o sus contraejemplos.</li>
+                <li class="fragment">Si se verifica, indique los casos indagados y exprese la propiedad explorada  como una conjetura a demostrar.</li>
+                <li class="fragment">Si no se verifica, indique su o sus contraejemplos.</li>
             </ol>
             
         </section>
@@ -132,15 +175,8 @@
             </p>
             <p class="fragment" data-fragment-index="1">Lo que demuestra nuestra conjetura.</p>
         </section>
-
         <section>
-            <p class="text-big">Desafío 12: Generalización o reformulación</p>
-            <p class="text-big">Plantee la conjetura como un corolario del Teorema de Pitágoras. </p>
-        </section>
-
-        <section>
-            <p class="text-big">Desafío 13: Evaluación del modelo</p>
-            <p class="text-big">A partir de lo anterior, planteé 2 nuevas preguntas de indagación.</p>
+            <p class="text-big">Desafío 13: A partir de lo anterior, planteé 2 nuevas preguntas de indagación junto a su link compartido de Geogebra</p>
         </section>
 
     </div>
@@ -163,6 +199,18 @@
         maxScale: 3.0,
         plugins: [ RevealMath.KaTeX, RevealHighlight ]
     });
+    // Iframe persistente
+    const container = document.getElementById('iframe-container');
+    function updateIframeVisibility(event) {
+        if (event.currentSlide.classList.contains('usar-iframe')) {
+        container.classList.add('active');
+        } else {
+        container.classList.remove('active');
+        }
+    }
+    Reveal.on('ready', updateIframeVisibility);
+    Reveal.on('slidechanged', updateIframeVisibility);
+    
 
     // Restart videos when slide becomes active
     Reveal.on('slidechanged', function(event) {
