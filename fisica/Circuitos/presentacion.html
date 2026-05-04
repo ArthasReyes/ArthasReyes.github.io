@@ -132,107 +132,226 @@
     </section>
     <section>
         <h2>Objetivo</h2>
-        <p class="text-big">Investigar la veracidad de la ley de Ohm a una fuente constante y resistencia variable.</p>
+        <p>Programar LEDs utilizando una Raspberry Pi pico</p>
     </section>
     <section>
-        <p>En su cuaderno plantea:</p>
+        <img src="assets/thonny.png">
+    </section>
+    <section>
+        <p>Estructura básica de un programa</p>
+        <pre><code class="language-python">
+            #Librerías
+            from machine import Pin
+            from utime import sleep
+
+            #Conexiones
+            led = Pin(25, Pin.OUT)
+
+            #Algoritmo
+            led.on()
+            sleep(1)
+            led.off()
+        </code></pre>
+    </section>
+    <section>
+        <h2>Desafíos</h2>
         <ul>
-            <li>Una pregunta de indagación</li>
-            <li>Una introducción</li>
-            <li>Una hipótesis del gráfico resultante</li>
-            <li>Un montaje</li>
-            <li>Procedimiento</li>
-            <li>Registro de datos</li>
-            <li>Análisis de datos</li>
-            <li>Conclusión</li>
+            <li>D1: Prende y apaga el led 2 veces</li>
+            <li>D2: Prende y apaga el led 3 veces, con diferentes tiempos</li>
+            <li>D3: Prende y apaga 2 leds alternadamente</li>
         </ul>
-    </section>
-    <section>
-        <h2>Objetivo</h2>
-        <p class="text-big">Evaluar experimentalmente el impacto de quitar una resistencia en un circuito en paralelo</p>
     </section>
     <section>
         <div class="two-cols">
             <div class="left-col">
-                <p>En un informe plantea:</p>
-                <ul>
-                    <li>Una pregunta de indagación</li>
-                    <li>Una introducción</li>
-                    <li>Procedimiento</li>
-                    <li>Un marco teórico</li>
-                    <li>Una hipótesis del resultado</li>
-                    <li>Un montaje</li>
-                    <li>Registro de datos</li>
-                    <li>Análisis de datos</li>
-                    <li>Conclusión de la pregunta</li>
-                    <li>Mejoras del experimento</li>
-                </ul>
+                <h2>Desafío 4</h2>
+                <p>Prende y apaga 3 leds en el siguiente orden</p>
             </div>
             <div class="right-col">
-                <img src="assets/resistencias_paralelo.png">
+                <table>
+                    <tr>
+                        <th>Led1</th>
+                        <th>Led2</th>
+                        <th>Led3</th>
+                    </tr>
+                    <tr><td>E</td><td>A</td><td>A</td></tr>
+                    <tr><td>A</td><td>E</td><td>A</td></tr>
+                    <tr><td>A</td><td>A</td><td>E</td></tr>
+                    <tr><td>E</td><td>E</td><td>A</td></tr>
+                    <tr><td>E</td><td>A</td><td>E</td></tr>
+                    <tr><td>A</td><td>E</td><td>E</td></tr>
+                    <tr><td>E</td><td>E</td><td>E</td></tr>
+                    <tr><td>A</td><td>A</td><td>A</td></tr>
+                </table>
             </div>
         </div>
     </section>
     <section>
         <h2>Objetivo</h2>
-        <p>Aplicar los conceptos de potencia en circuitos eléctricos</p>
+        <p class="text-big">Investigar el comportamiento de un LDR variando la intensidad luminosa y comparando los resultados</p>
     </section>
-    <section> Definir potencia = VI</section>
-    <section>Ejercicicios para calcularlo de forma teórica</section>
-    <section>Uso adecuado de fuentes y resistencias para favorecer la potencia</section>
+    <section>
+        <h2>Materiales</h2>
+        <ul>
+            <li>LDR</li>
+            <li>Protoboard</li>
+            <li>Cables cocodrilo</li>
+            <li>Cables Duppont</li>
+            <li>Resistencia de 1 kΩ</li>
+            <li>Tester</li>
+            <li>Raspberry Pi Pico</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Marco Teórico: LDR</h2>
+        <div class="two-cols">
+            <div class="left-col">
+                <img src="assets/ldr.png">
+            </div>
+            <div class="right-col">
+                <p>Un LDR es un resistor cuya resistencia disminuye cuando aumenta la intensidad de luz que incide sobre él.</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h3>Pregunta de investigación: ¿Cómo varía la resistencia de un LDR en función de la intensidad luminosa emitida por un LED?</h3>
+        <div class="two-cols">
+            <div class="left-col">
+                <p class="text-big">¿Cuáles son las variables de esta investigación?</p>
+            </div>
+            <div class="right-col">
+                <ul>
+                    <li>Variable independiente: <span class="fragment"><b>Intensidad de luz del LED</b></span></li>
+                    <li>Variable dependiente: <span class="fragment"><b>Resistencia</b></span></li>
+                    <li>Variable controlada: <span class="fragment"><b>Distancia, luz ambiente, voltaje</b></span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <p>Marco teórico: Regular la intensidad de un led</p>
+        <div class="two-cols">
+            <div class="left-col">
+            <pre><code class="language-python">
+#librerías
+from machine import Pin
+from time import sleep
+
+#Conexiones
+led = Pin(25, Pin.OUT)
+
+#Algoritmo
+led.on()    # 100% de luz
+sleep(3)
+led.off()   #0% de luz
+        </code></pre>
+            </div>
+            
+            <div class="right-col">
+            <pre class="fragment"><code class="language-python">
+#librerías
+from machine import Pin, PWM
+from time import sleep
+
+#Conexiones
+led = PWM(Pin(25, Pin.OUT))
+led.freq(1000)
+
+#Algoritmo
+led.duty_u16(65535) # 100% de luz
+sleep(3)
+led.duty_u16(0)     # 0% de luz
+
+        </code></pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Completa el informe de investigación</h2>
+        <ul>
+            <li>Hipótesis (¿Cuál crees que será la relación de las variables?)</li>
+            <li>Montaje y consideraciones (Esquema y consideraciones)</li>
+            <li>Toma de datos (tabla de % de luz y resistencia)</li>
+            <li>Análisis de datos (Variables derivadas y Gráfico a partir de la tabla)</li>
+            <li>Evaluación del modelo (¿Cómo se comporta el LDR en condiciones de alta o baja luz?¿Sigue alguna condición matemática?)</li>
+        </ul>
+    </section>
     <section>
         <h2>Objetivo</h2>
-        <p class="text-big">Reconocer vocabulario de circuitos domiciliarios y sus funciones</p>
+        <p>Medir la resistencia de un potenciómetro a través de una raspberry pi pico</p>
     </section>
-    <section class="scrollable">
-        <h2>Componentes principales</h2>
-        <table>
-            <tr>
-                <th>Componente</th>
-                <th>Función</th>
-                <th>Ubicación típica</th>
-            </tr>
-            <tr>
-                <td>Medidor eléctrico</td>
-                <td>Registra el consumo de energía</td>
-                <td>Entrada de la vivienda</td>
-            </tr>
-            <tr>
-                <td>Interruptor general (automático)</td>
-                <td>Corta toda la energía ante sobrecarga o corto</td>
-                <td>Tablero eléctrico</td>
-            </tr>
-            <tr>
-                <td>Disyuntor diferencial</td>
-                <td>Protege a las personas ante fugas de corriente</td>
-                <td>Tablero eléctrico</td>
-            </tr>
-            <tr>
-                <td>Circuitos (ramales)</td>
-                <td>Distribuyen la energía a distintas zonas</td>
-                <td>Interior de la casa</td>
-            </tr>
-            <tr>
-                <td>Conductores (cables)</td>
-                <td>Transportan la corriente eléctrica</td>
-                <td>Dentro de muros/conduits</td>
-            </tr>
-            <tr>
-                <td>Enchufes (tomacorrientes)</td>
-                <td>Permiten conectar dispositivos</td>
-                <td>Paredes</td>
-            </tr>
-            <tr>
-                <td>Interruptores</td>
-                <td>Abren o cierran circuitos de iluminación</td>
-                <td>Paredes</td>
-            </tr>
-            <tr>
-                <td>Puesta a tierra</td>
-                <td>Deriva corrientes peligrosas al suelo</td>
-                <td>Sistema conectado a tierra física</td>
-            </tr>
-        </table>
+    <section>
+        <h2>Potenciómetro</h2>
+        <div class="two-cols">
+            <div class="left-col">
+                <img src="assets/potenciometro.png">
+            </div>
+            <div class="right-col">
+                <p>Un potenciómetro es un resistor cuya resistencia varía cuando se gira su perilla.</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Leer un potenciómetro</h2>
+        <pre><code class="language-python">
+#librerías
+from machine import Pin, ADC
+from time import sleep
+
+#Conexiones
+pot = ADC(Pin(26))
+
+#Algoritmo
+while True:
+    valor = pot.read_u16() #Lee entre 0-65535
+    print(valor)
+    sleep(0.5)
+        </code></pre>
+    </section>
+    <section>
+        <h1>Planteemos una pregunta de indagación</h1>
+    </section>
+    <section>
+        <p>¿Cuál es la relación entre el valor ADC medido por la raspberry pi pico y la resistencia indicada en un tester</p>
+        <ul>
+            <li>Variable independiente: <span class="fragment"><b>Valor ADC </b></span></li>
+            <li>Variable dependiente: <span class="fragment"><b>Resistencia</b></span></li>
+            <li>Variable controlada: <span class="fragment"><b>Voltaje de referencia, temperatura, potenciómetro</b></span></li>
+        </ul>
+    </section>
+    <section>
+        <h2>Complete el informe en su cuaderno</h2>
+        <ul>
+            <li>Plan de investigación (¿Cómo vamos a medir?)</li>
+            <li>Marco teórico (Ecuaciones y conceptos clave)</li>
+            <li>Hipótesis (¿Cuál crees que será la relación de las variables?)</li>
+            <li>Montaje (Esquema o fotos, y consideraciones al medir)</li>
+            <li>Toma de datos (Tabla de mediciones)</li>
+            <li>Análisis de datos (Variables derivadas y Gráfico a partir de la tabla)</li>
+            <li>Conclusión (relación entre variables de forma práctica)</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h2>Trabajo evaluado</h2>
+        <div class="two-cols">
+            <div class="left-col">
+                <p class="box-green">Realiza una investigación que permita obtener la relación entre el ángulo de giro de un potenciometro y la resistencia de este</p>
+                <ul>
+                    <li>Pregunta de indagación (variable dependiente, independiente y de control)</li>
+                    <li>Plan de investigación (¿Cómo vamos a medir?)</li>
+                </ul>
+            </div>
+            <div class="right-col">
+                <ul>
+                    <li>Marco teórico (Ecuaciones y conceptos clave)</li>
+                    <li>Montaje (Esquema o fotos, y consideraciones al medir)</li>
+                    <li>Toma de datos (Tabla de mediciones)</li>
+                    <li>Análisis de datos (gráficos y resultados)</li>
+                    <li>Conclusión (relación entre variables de forma práctica)</li>
+                </ul>
+            </div>
+        </div>
     </section>
     <section>
         <section><h2>Preguntas PAES de Circuitos</h2></section>
