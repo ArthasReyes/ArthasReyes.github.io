@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>U2: Estadística</title>
+    
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+    </script>
+</head>
+<body>
+    
+
+    <div class="reveal">
+        <img class="logo" src="../logo.png" alt="Logo Institución" />
+    <div class="slides">
+        <section>
+            <h2>Estadística</h2>
+            <img src="assets/portada.png" class="r-stretch" />
+            <p>Introducción</p>
+        </section>
+
+        <section>
+            <h2>Objetivo</h2>
+            <p class="text-big">Construir tablas de frecuencias a partir de datos no agrupados</p>
+        </section>
+        <section>
+            <h1>¿Qué es la estadística?</h1>
+            <p class="fragment text-big">La estadística es una ciencia que se ocupa de la recolección, organización, presentación, análisis e interpretación de datos.</p>
+            
+        </section>
+        <section>
+            <img src="assets/proceso.png" class="r-stretch" />
+        </section>
+        <section>
+            <h3>¿A quiénes estudiamos?</h3>
+            <div class="two-cols">
+                <div class="left-col">
+                    <h3>Población</h3>
+                    <p>Conjunto de individuos que comparten características comunes y sobre el cual se desea obtener información.</p>
+                    <h3>Muestra</h3>
+                    <p>Subconjunto de la población seleccionado para el estudio.</p>
+                </div>
+                <div class="right-col">
+                    <muestra-estadistica></muestra-estadistica>
+                </div>
+            </div>
+        </section>
+        <section>
+            <section>
+                <h2>¿Qué es lo que queremos saber de nuestra población?</h2>
+                <p class="text-big fragment">Variable: Característica o cualidad que se está estudiando en la población.</p>
+            </section>
+            <section>
+                <div class="two-cols">
+                    <div class="left-col">
+                        <h2>¿Qué características podemos estudiar de la imagen?</h2>
+                    </div>
+                    <div class="right-col">
+                        <img src="assets/animales.png" class="r-stretch" />
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Tipos de variables</h2>
+                <div class="two-cols">
+                        
+                    <div class="left-col">
+                        <p><b>Cualitativas:</b> Expresan cualidades o características. No se pueden expresar con números.</p>
+                        <p><b>Cuantitativas:</b> Expresan cantidades o números.</p>
+                    </div>
+                    <div class="right-col">
+                        <img src="assets/animales.png" class="r-stretch" />
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="two-cols">
+                    <div class="left-col">
+                        <h2>Indica dos varibales cualitativas y dos cuantitativas de los elementos de la imagen</h2>
+                    </div>
+                    <div class="right-col">
+                        <img src="assets/set_ninos.png" class="r-stretch" />
+                    </div>
+                </div>
+            </section>
+            
+        </section>
+        <section>
+            <section>
+                <h2>Frecuencia absoluta</h2>
+                <p>de un valor es el número de veces que aparece ese valor en el conjunto de datos.</p>
+                <h2>Rango</h2>
+                <p>Es la diferencia entre el mayor y menor de los datos</p>
+            </section>
+            <section>
+                <div class="two-cols">
+                    <div class="left-col">
+                        <ul>
+                            <li>¿Cual es la frecuencia total de cada valor?</li>
+                            <li>¿Cual es el rango del lanzamiento?¿Siempre será el mismo?</li>
+                            <li>¿Qué valor salió más?</li>
+                            <li>¿Qué valor salió menos?</li>
+                            <li class="fragment">Crea una tabla de frecuencia del lanzamiento</li>
+                        </ul>
+                    </div>
+                    <div class="right-col">
+                        <lanzamiento-dados></lanzamiento-dados>
+                    </div>
+                </div>
+                
+            </section>
+        </section>
+
+        
+
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.js"></script>
+    <script src="../../timer.js"></script>
+    <script src="../../muestra-estadistica.js"></script>
+    <script src="../../lanzamiento-dados.js"></script>
+    <script>
+    Reveal.initialize({
+        hash: true,
+        transition: 'fade',
+        slideNumber: 'c/t',
+        center: true,
+        margin: 0.02,
+        width: 1280,
+        height: 720,
+        minScale: 0.1,
+        maxScale: 3.0,
+        plugins: [ RevealMath.KaTeX, RevealHighlight ]
+    });
+    // Iframe persistente
+    const container = document.getElementById('iframe-container');
+    function updateIframeVisibility(event) {
+        if (event.currentSlide.classList.contains('usar-iframe')) {
+        container.classList.add('active');
+        } else {
+        container.classList.remove('active');
+        }
+    }
+    Reveal.on('ready', updateIframeVisibility);
+    Reveal.on('slidechanged', updateIframeVisibility);
+    
+
+    // Restart videos when slide becomes active
+    Reveal.on('slidechanged', function(event) {
+        // pause videos in previous slide
+        var prevVids = event.previousSlide ? event.previousSlide.querySelectorAll('video') : [];
+        prevVids.forEach(v => v.pause());
+
+        // reset and play videos in current slide
+        var currVids = event.currentSlide ? event.currentSlide.querySelectorAll('video') : [];
+        currVids.forEach(v => {
+            v.currentTime = 0;
+            v.play();
+        });
+    });
+</script>
+</body>
+</html>
