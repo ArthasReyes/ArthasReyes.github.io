@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>U3</title>
+    
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../charts.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { hljs.highlightAll(); });
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        <img class="logo" src="../logo_dep.png" alt="Logo Institución" />
+    <div class="slides">
+    <section>
+        
+        <h2>Unidad 3</h2>
+        <h3>Geogebra</h3>
+        <img src="assets/retro_portada.png" class="r-stretch" />
+        <p>Retroalimentación</p>
+    </section>
+    <section>
+        <img src="assets/escalera_retro.png" class="r-stretch" >
+    </section>
+    <section>
+        <h2>Presentaciones</h2>
+        <ul>
+            <li>La retroalimentación es a través del formulario de google en ucursos.</li>
+            <li>Se evalúa a todos salvo a tu grupo siguiente.</li>
+            <li>Al grupo siguiente se le retroalimenta de forma oral.</li>
+            <li>Los “me gusta, me pregunto y te sugiero” se enviarán a los equipos después, no lo dejen en blanco ni coloquen respuestas vagas.</li>
+        </ul>
+    </section>
+        
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.js"></script>
+    <script src="../../timer.js"></script>
+    <script>
+    Reveal.initialize({
+        hash: true,
+        transition: 'fade',
+        slideNumber: 'c/t',
+        center: true,
+        margin: 0.02,
+        width: 1280,
+        height: 720,
+        minScale: 0.1,
+        maxScale: 3.0,
+        plugins: [ RevealMath.KaTeX, RevealHighlight ]
+    });
+
+    // Restart videos when slide becomes active
+    Reveal.on('slidechanged', function(event) {
+        // pause videos in previous slide
+        var prevVids = event.previousSlide ? event.previousSlide.querySelectorAll('video') : [];
+        prevVids.forEach(v => v.pause());
+
+        // reset and play videos in current slide
+        var currVids = event.currentSlide ? event.currentSlide.querySelectorAll('video') : [];
+        currVids.forEach(v => {
+            v.currentTime = 0;
+            v.play();
+        });
+    });
+</script>
+</body>
+</html>
