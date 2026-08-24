@@ -1,10 +1,10 @@
 class SimuladorEspejos extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 700px; margin: auto; text-align: center; color: #333;">
-        <div style="display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 12px; font-size: 14px; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e9ecef;">
+      <div style="font-family: system-ui, sans-serif; max-width: 750px; margin: auto; text-align: center; color: #333;">
+        <div style="display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 12px; font-size: 14px; background: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px solid #e9ecef;">
           <label style="display: flex; align-items: center; gap: 4px;">
-            <b>Tipo:</b>
+            <b>Espejo:</b>
             <select id="tipoEspejo" style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc;">
               <option value="plano">Plano</option>
               <option value="concavo">Esférico Cóncavo</option>
@@ -15,8 +15,8 @@ class SimuladorEspejos extends HTMLElement {
           <label style="display: flex; align-items: center; gap: 4px;">
             <b>Rayos:</b>
             <select id="tipoRayos" style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc;">
-              <option value="notables">Rayos Notables</option>
-              <option value="multiples">Múltiples Rayos</option>
+              <option value="notables">2 Rayos Notables</option>
+              <option value="multiples">4 Rayos Múltiples</option>
             </select>
           </label>
 
@@ -29,7 +29,7 @@ class SimuladorEspejos extends HTMLElement {
           </label>
         </div>
 
-        <canvas width="650" height="350" style="border: 1px solid #ccc; border-radius: 8px; background-color: #ffffff; cursor: default;"></canvas>
+        <canvas width="750" height="400" style="border: 1px solid #ccc; border-radius: 8px; background-color: #ffffff; cursor: default;"></canvas>
       </div>
     `;
 
@@ -41,50 +41,44 @@ class SimuladorEspejos extends HTMLElement {
     const chkRef = this.querySelector("#chkReflejados");
     const chkProy = this.querySelector("#chkProyectados");
 
-    // Parámetros ópticos
-    const V = { x: 420, y: 175 }; // Vértice del espejo
-    const R = 160;                 // Radio de curvatura
-    const f = R / 2;               // Distancia focal
+    // Parámetros geométricos exactos
+    const V = { x: 500, y: 200 }; // Vértice
+    const R = 300;                // Radio de curvatura grande para minimizar aberración esférica visual
+    const espejoAlto = 160;       // Límite vertical de dibujo del espejo (desde el vértice)
 
     // Estado del Objeto
     let objX = 220;
-    let objY = 95; // Y del extremo (punta) de la flecha
+    let objY = 100;
     let isDragging = false;
 
-    // Métodos de interacción drag & drop
     const getPos = (e) => {
       const rect = canvas.getBoundingClientRect();
-      return {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-      };
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
     canvas.addEventListener("mousedown", (e) => {
       const pos = getPos(e);
-      const dist = Math.hypot(pos.x - objX, pos.y - objY);
-      if (dist <= 10) isDragging = true;
+      if (Math.hypot(pos.x - objX, pos.y - objY) <= 12) isDragging = true;
     });
 
     canvas.addEventListener("mousemove", (e) => {
       const pos = getPos(e);
-      const dist = Math.hypot(pos.x - objX, pos.y - objY);
-      canvas.style.cursor = dist <= 10 || isDragging ? "pointer" : "default";
+      canvas.style.cursor = Math.hypot(pos.x - objX, pos.y - objY) <= 12 || isDragging ? "pointer" : "default";
 
       if (isDragging) {
-        objX = Math.min(Math.max(pos.x, 30), V.x - 5);
-        objY = Math.min(Math.max(pos.y, 25), canvas.height - 25);
+        // Limitar la posición del objeto al lado izquierdo del espejo
+        objX = Math.min(Math.max(pos.x, 30), V.x - 20);
+        objY = Math.min(Math.max(pos.y, 30), canvas.height - 30);
         draw();
       }
     });
 
     window.addEventListener("mouseup", () => { isDragging = false; });
-
     [selEspejo, selRayos, chkRef, chkProy].forEach(el => el.addEventListener("change", () => draw()));
 
-    const drawRay = (x1, y1, x2, y2, color = "#e74c3c", dashed = false) => {
+    const drawRay = (x1, y1, x2, y2, color, dashed = false) => {
       ctx.beginPath();
-      ctx.setLineDash(dashed ? [5, 5] : []);
+      ctx.setLineDash(dashed ? [6, 6] : []);
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
       ctx.strokeStyle = color;
@@ -93,139 +87,190 @@ class SimuladorEspejos extends HTMLElement {
       ctx.setLineDash([]);
     };
 
+    // Función matemática para intersectar un rayo con el espejo (plano o círculo)
+    const getIntersectionAndNormal = (O, dir, tipo) => {
+      if (tipo === "plano") {
+        if (dir.x === 0) return null;
+        const t = (V.x - O.x) / dir.x;
+        const M = { x: V.x, y: O.y + t * dir.y };
+        return { M, n: { x: -1, y: 0 } }; // Normal siempre apunta a la izquierda
+      } 
+      
+      // Espejo Esférico
+      const isConcavo = tipo === "concavo";
+      const C = { x: isConcavo ? V.x - R : V.x + R, y: V.y }; // Centro de curvatura
+      
+      const dx = O.x - C.x;
+      const dy = O.y - C.y;
+      
+      const a = dir.x * dir.x + dir.y * dir.y;
+      const b = 2 * (dir.x * dx + dir.y * dy);
+      const c = dx * dx + dy * dy - R * R;
+      const disc = b * b - 4 * a * c;
+
+      if (disc < 0) return null; // No choca
+
+      const t1 = (-b - Math.sqrt(disc)) / (2 * a);
+      const t2 = (-b + Math.sqrt(disc)) / (2 * a);
+
+      // Evaluar ambas intersecciones y elegir la que está en el arco del espejo (cerca al Vértice)
+      const M1 = { x: O.x + t1 * dir.x, y: O.y + t1 * dir.y };
+      const M2 = { x: O.x + t2 * dir.x, y: O.y + t2 * dir.y };
+
+      const d1 = t1 > 0.001 ? Math.hypot(M1.x - V.x, M1.y - V.y) : Infinity;
+      const d2 = t2 > 0.001 ? Math.hypot(M2.x - V.x, M2.y - V.y) : Infinity;
+
+      if (d1 === Infinity && d2 === Infinity) return null;
+
+      const M = (d1 < d2) ? M1 : M2;
+      
+      // Calcular vector Normal en el punto de intersección
+      // Cóncavo: la cara pulida está a la derecha del centro (normal apunta de la curva hacia el centro)
+      // Convexo: la cara pulida está a la izquierda del centro (normal apunta del centro hacia afuera)
+      const distMC = Math.hypot(M.x - C.x, M.y - C.y);
+      let n = isConcavo 
+        ? { x: (C.x - M.x) / distMC, y: (C.y - M.y) / distMC }
+        : { x: (M.x - C.x) / distMC, y: (M.y - C.y) / distMC };
+
+      return { M, n };
+    };
+
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       const tipo = selEspejo.value;
       const modoRayos = selRayos.value;
-      const showRef = chkRef.checked;
-      const showProy = chkProy.checked;
 
-      // Centros focales según tipo
-      const C = { x: tipo === "convexo" ? V.x + R : V.x - R, y: V.y };
-      const F = { x: tipo === "convexo" ? V.x + f : V.x - f, y: V.y };
-
-      // 1. Eje óptico
+      // 1. Eje Óptico
       drawRay(0, V.y, canvas.width, V.y, "#95a5a6");
 
-      // 2. Dibujar Espejo
-      ctx.lineWidth = 2.5;
+      // Centros C y F para la geometría esférica
+      const isConcavo = tipo === "concavo";
+      const C = tipo === "plano" ? null : { x: isConcavo ? V.x - R : V.x + R, y: V.y };
+      const F = tipo === "plano" ? null : { x: isConcavo ? V.x - R/2 : V.x + R/2, y: V.y };
+
+      // 2. Dibujar Espejo Físico
+      ctx.lineWidth = 3;
       ctx.strokeStyle = "#2c3e50";
       ctx.beginPath();
       if (tipo === "plano") {
-        ctx.moveTo(V.x, 25);
-        ctx.lineTo(V.x, canvas.height - 25);
+        ctx.moveTo(V.x, V.y - espejoAlto);
+        ctx.lineTo(V.x, V.y + espejoAlto);
       } else {
-        const startAngle = tipo === "concavo" ? Math.PI * 0.75 : Math.PI * 0.25;
-        const endAngle = tipo === "concavo" ? Math.PI * 1.25 : Math.PI * 0.75;
-        ctx.arc(C.x, C.y, R, startAngle, endAngle, tipo === "convexo");
+        const anguloApertura = Math.asin(espejoAlto / R);
+        if (isConcavo) {
+          // Curva a la derecha del centro
+          ctx.arc(C.x, C.y, R, -anguloApertura, anguloApertura);
+        } else {
+          // Curva a la izquierda del centro
+          ctx.arc(C.x, C.y, R, Math.PI - anguloApertura, Math.PI + anguloApertura);
+        }
       }
       ctx.stroke();
 
-      // Puntos F y C (si es esférico)
+      // Puntos Notables (C, F, V)
+      ctx.fillStyle = "#2c3e50";
+      ctx.font = "14px sans-serif";
+      
+      const drawPoint = (pt, label, offset = 18) => {
+        ctx.beginPath(); ctx.arc(pt.x, pt.y, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillText(label, pt.x - 4, pt.y + offset);
+      };
+
+      drawPoint(V, "V");
       if (tipo !== "plano") {
-        [C, F, V].forEach((p, i) => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
-          ctx.fillStyle = "#2c3e50";
-          ctx.fill();
-          ctx.font = "12px sans-serif";
-          ctx.fillText(["C", "F", "V"][i], p.x - 4, p.y + 18);
-        });
-      } else {
-        ctx.beginPath();
-        ctx.arc(V.x, V.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = "#2c3e50";
-        ctx.fill();
-        ctx.font = "12px sans-serif";
-        ctx.fillText("V", V.x - 4, V.y + 18);
+        drawPoint(F, "F");
+        drawPoint(C, "C");
       }
 
-      // 3. Dibujar Objeto (Flecha con control en la punta)
+      // 3. Dibujar Objeto
       ctx.beginPath();
       ctx.moveTo(objX, V.y);
       ctx.lineTo(objX, objY);
       ctx.strokeStyle = "#2980b9";
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth = 3;
       ctx.stroke();
 
-      // Cabeza de la flecha
-      const headLen = 8;
-      const angle = Math.atan2(objY - V.y, 0);
+      const headLen = 10;
+      const angleObj = Math.atan2(objY - V.y, 0);
       ctx.beginPath();
       ctx.moveTo(objX, objY);
-      ctx.lineTo(objX - headLen * Math.sin(angle - Math.PI / 6), objY - headLen * Math.cos(angle - Math.PI / 6));
-      ctx.lineTo(objX - headLen * Math.sin(angle + Math.PI / 6), objY - headLen * Math.cos(angle + Math.PI / 6));
-      ctx.fillStyle = "#2980b9";
-      ctx.fill();
+      ctx.lineTo(objX - headLen * Math.sin(angleObj - Math.PI / 6), objY - headLen * Math.cos(angleObj - Math.PI / 6));
+      ctx.lineTo(objX - headLen * Math.sin(angleObj + Math.PI / 6), objY - headLen * Math.cos(angleObj + Math.PI / 6));
+      ctx.fillStyle = "#2980b9"; ctx.fill();
 
-      // Punto arrastrable
-      ctx.beginPath();
-      ctx.arc(objX, objY, 6, 0, Math.PI * 2);
-      ctx.fillStyle = "#e67e22";
-      ctx.fill();
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
+      // Handler arrastrable
+      ctx.beginPath(); ctx.arc(objX, objY, 7, 0, Math.PI * 2);
+      ctx.fillStyle = "#e67e22"; ctx.fill();
+      ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#2980b9"; ctx.font = "bold 13px sans-serif";
+      ctx.fillText("Objeto", objX - 22, V.y + (objY < V.y ? 18 : -10));
 
-      ctx.fillStyle = "#2980b9";
-      ctx.font = "bold 12px sans-serif";
-      ctx.fillText("Objeto", objX - 18, V.y + (objY < V.y ? 15 : -8));
-
-      // 4. Trazado de Rayos
-      const incidentes = [];
+      // 4. Configurar Vectores Directores de Rayos Incidentes
+      const O = { x: objX, y: objY };
+      const direcciones = [];
 
       if (modoRayos === "notables") {
-        // Rayo 1: Paralelo al eje óptico
-        incidentes.push({ targetY: objY, type: "paralelo" });
-        // Rayo 2: Dirigido al Vértice
-        incidentes.push({ targetY: V.y, type: "vertice" });
+        // Rayo 1: Paralelo al eje óptico (dir.y = 0)
+        direcciones.push({ x: 1, y: 0 });
+        
+        // Rayo 2: Hacia el vértice V
+        const dx = V.x - O.x;
+        const dy = V.y - O.y;
+        const len = Math.hypot(dx, dy);
+        direcciones.push({ x: dx / len, y: dy / len });
       } else {
-        // 4 haces en abanico
-        const angles = [-0.3, -0.1, 0.1, 0.3];
-        angles.forEach(ang => {
-          const targetY = objY + Math.tan(ang) * (V.x - objX);
-          incidentes.push({ targetY: targetY, type: "angular" });
+        // 4 Rayos apuntando a diferentes alturas del espejo
+        const targetsY = [V.y - 120, V.y - 40, V.y + 40, V.y + 120];
+        targetsY.forEach(ty => {
+          const dx = V.x - O.x;
+          const dy = ty - O.y;
+          const len = Math.hypot(dx, dy);
+          direcciones.push({ x: dx / len, y: dy / len });
         });
       }
 
-      incidentes.forEach(ray => {
-        // Rayo Incidente (Punta objeto al espejo)
-        drawRay(objX, objY, V.x, ray.targetY, "#d35400");
+      // 5. Motor de Trazado de Rayos (Reflexión Física)
+      direcciones.forEach(dir => {
+        const hit = getIntersectionAndNormal(O, dir, tipo);
+        
+        // Si el rayo impacta fuera de la altura física dibujada del espejo, lo descartamos visualmente
+        if (!hit || Math.abs(hit.M.y - V.y) > espejoAlto) return;
 
-        // Cálculo de reflexiones
-        let tanRef, incY = ray.targetY;
+        const { M, n } = hit;
 
-        if (tipo === "plano") {
-          tanRef = (V.y - objY) / (V.x - objX);
-          if (ray.type === "paralelo") tanRef = 0;
+        // Vector Incidente hacia la normal
+        // Ley de reflexión vectorial: R = D - 2(D·n)n
+        const dot = dir.x * n.x + dir.y * n.y;
+        const reflejado = {
+          x: dir.x - 2 * dot * n.x,
+          y: dir.y - 2 * dot * n.y
+        };
 
-          // Rayo reflejado
-          if (showRef) drawRay(V.x, incY, 0, incY - tanRef * V.x, "#c0392b");
-          // Proyección
-          if (showProy) drawRay(V.x, incY, canvas.width, incY + tanRef * (canvas.width - V.x), "#7f8c8d", true);
+        // Dibujar Rayo Incidente (Naranja)
+        drawRay(O.x, O.y, M.x, M.y, "#d35400");
 
-        } else {
-          // Aproximación paraxial para espejos esféricos
-          const d_o = V.x - objX;
-          const h = V.y - objY;
-          const d_i = (d_o * f) / (d_o - (tipo === "concavo" ? f : -f));
-          const h_i = -h * (d_i / d_o);
+        // Dibujar Rayo Reflejado Real (Rojo - rebota hacia la izquierda)
+        if (chkRef.checked) {
+          // Proyectamos lejos en la dirección reflejada
+          const destX = M.x + reflejado.x * 2000;
+          const destY = M.y + reflejado.y * 2000;
+          drawRay(M.x, M.y, destX, destY, "#c0392b");
+        }
 
-          const imgX = tipo === "concavo" ? V.x - d_i : V.x + d_i;
-          const imgY = V.y - h_i;
-
-          if (showRef) {
-            const dirX = tipo === "concavo" && d_o > f ? -1 : 1;
-            const slope = (imgY - incY) / (imgX - V.x);
-            const destX = V.x + dirX * 400;
-            const destY = incY + slope * (destX - V.x);
-            drawRay(V.x, incY, destX, destY, "#c0392b");
-          }
-
-          if (showProy) {
-            drawRay(V.x, incY, imgX, imgY, "#7f8c8d", true);
-          }
+        // Dibujar Proyección Virtual (Gris punteado - se proyecta hacia la derecha del espejo)
+        if (chkProy.checked) {
+          // La proyección va en dirección contraria al reflejado (-reflejado)
+          const projX = M.x - reflejado.x * 2000;
+          const projY = M.y - reflejado.y * 2000;
+          
+          // Solo dibujar la línea punteada hacia el lado "virtual" (x > M.x)
+          // Usamos clip() para asegurar que la línea punteada solo exista "detrás" del espejo
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(V.x, 0, canvas.width - V.x, canvas.height); // Solo permitimos dibujo a la derecha del vértice
+          ctx.clip();
+          drawRay(M.x, M.y, projX, projY, "#7f8c8d", true);
+          ctx.restore();
         }
       });
     };
